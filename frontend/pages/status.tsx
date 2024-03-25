@@ -95,8 +95,8 @@ export default function StatusPage() {
                 <div className="mb-2">
                     <div className="flex justify-between items-center w-full"> {/* <-- flexbox container */}
                         <div className="flex-none">
-                            <div className="bg-yellow-200 border-2 border-gray-800 rounded-lg shadow-lg animate-pop-in hover-container mr-4 ">
-                                <img src={`${bgUrl}verba.png`} alt="Verba Logo" className=" w-24 h-24 shadow-lg" />
+                            <div className="bg-opacity-0 border-2 border-gray-800 rounded-lg shadow-lg animate-pop-in hover-container mr-4 ">
+                                <img src={`${bgUrl}v-und-s.svg`} alt="V und S Logo" className=" w-24 h-24 shadow-lg" />
                             </div>
                         </div>
                         <div className="flex-1">
@@ -108,7 +108,7 @@ export default function StatusPage() {
                                 <span className="bg-opacity-0 rounded font-bold px-2 py-1 hover-container animate-pop-in-late">
                                     Golden
                                 </span>
-                                <span className="bg-yellow-200 rounded px-2 py-1 hover-container animate-pop-more-late">
+                                <span className="bg-opacity-0 rounded px-2 py-1 hover-container animate-pop-more-late">
                                     RAGtriever
                                 </span>
                             </div>
@@ -167,15 +167,15 @@ export default function StatusPage() {
 
                         </div>
                         <p className="text-xs font-bold mb-4 text-gray-600">This view shows all schemas and their object count</p>
-                        <button onClick={() => setShowModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg mr-2">
-                            ❌ Reset Verba
-                        </button>
-                        <button onClick={() => setCacheModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg mr-2">
-                            ❌ Reset Cache
-                        </button>
-                        <button onClick={() => setSuggestioneModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg">
-                            ❌ Reset Suggestion
-                        </button>
+                        {(process.env.NODE_ENV === 'development') && (
+                            <><button onClick={() => setShowModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg mr-2">
+                                ❌ Reset Verba
+                            </button><button onClick={() => setCacheModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg mr-2">
+                                ❌ Reset Cache
+                            </button><button onClick={() => setSuggestioneModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg">
+                                ❌ Reset Suggestion
+                            </button></>
+                        )}
                         <hr />
                         <div className="grid grid-rows-2 gap-2 mt-4">
                             {Object.entries(schemas).map(([key, value]) => (

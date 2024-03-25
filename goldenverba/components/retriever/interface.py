@@ -31,6 +31,7 @@ class Retriever(VerbaComponent):
 
     def sort_chunks(self, chunks: list[Chunk]) -> list[Chunk]:
         return sorted(chunks, key=lambda chunk: (chunk.doc_uuid, int(chunk.chunk_id)))
+        #return sorted(chunks, key=lambda chunk: chunk.score, reverse=True)
 
     def cutoff_text(self, text: str, content_length: int) -> str:
         encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")

@@ -228,7 +228,7 @@ class VerbaManager:
             self.weaviate_type = "Weaviate Embedded"
             client = weaviate.Client(
                 additional_headers=additional_header,
-                embedded_options=EmbeddedOptions(),
+                embedded_options=EmbeddedOptions(version="1.24.5"),
             )
 
         if client is not None:
