@@ -405,6 +405,7 @@ async def get_status():
 @app.get("/api/reset")
 async def reset_verba():
     if production:
+        msg.info("Ignore resetting verba in production mode")
         return JSONResponse(status_code=200, content={})
 
     msg.info("Resetting verba")
@@ -417,8 +418,10 @@ async def reset_verba():
 # Reset Verba
 @app.get("/api/reset_cache")
 async def reset_cache():
-    if production:
-        return JSONResponse(status_code=200, content={})
+    # if production:
+    #     msg.info("Ignore resetting cache in production mode")
+    #     return JSONResponse(status_code=200, content={})
+
     msg.info("Resetting cache")
 
     manager.reset_cache()
@@ -429,8 +432,10 @@ async def reset_cache():
 # Reset Verba suggestions
 @app.get("/api/reset_suggestion")
 async def reset_suggestion():
-    if production:
-        return JSONResponse(status_code=200, content={})
+    # if production:
+    #     msg.info("Ignore resetting suggestions in production mode")
+    #     return JSONResponse(status_code=200, content={})
+
     msg.info("Resetting suggestions")
 
     manager.reset_suggestion()

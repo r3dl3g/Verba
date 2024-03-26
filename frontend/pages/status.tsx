@@ -25,6 +25,7 @@ export default function StatusPage() {
     const [showCacheModal, setCacheModal] = useState(false);
     const [showSuggestionModal, setSuggestioneModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [production, setProduction] = useState<boolean>(false);
 
     const handleReset = () => {
         setIsLoading(true); // Start loading
@@ -74,6 +75,33 @@ export default function StatusPage() {
             });
     };
 
+    useEffect(() => {
+        const fetchProduction = async () => {
+          try {
+            const response = await fetch(apiHost + "/api/get_production", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            const response_data = await response.json();
+    
+            if (response_data.production == true) {
+              console.log("In Production Mode")
+            } else {
+              console.log("In Normal Mode")
+            }
+    
+            // Update the document title and text
+            setProduction(response_data.production);
+          } catch (error) {
+            console.error("Failed to fetch document:", error);
+          }
+        }
+    
+        fetchProduction();
+    }, []);
+    
     useEffect(() => {
         fetch(apiHost + "/api/get_status")
             .then(response => response.json())
@@ -167,15 +195,17 @@ export default function StatusPage() {
 
                         </div>
                         <p className="text-xs font-bold mb-4 text-gray-600">This view shows all schemas and their object count</p>
-                        {(process.env.NODE_ENV === 'development') && (
-                            <><button onClick={() => setShowModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg mr-2">
+                        {/*!production && (<>
+                            <button onClick={() => setShowModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg mr-2">
                                 ❌ Reset Verba
-                            </button><button onClick={() => setCacheModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg mr-2">
+                            </button>
+                        </>)*/}
+                            <button onClick={() => setCacheModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg mr-2">
                                 ❌ Reset Cache
-                            </button><button onClick={() => setSuggestioneModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg">
+                            </button>
+                            <button onClick={() => setSuggestioneModal(true)} className="text-xs bg-gray-400 text-white hover:bg-red-400 hover-container px-3 py-2 rounded-lg">
                                 ❌ Reset Suggestion
-                            </button></>
-                        )}
+                            </button>
                         <hr />
                         <div className="grid grid-rows-2 gap-2 mt-4">
                             {Object.entries(schemas).map(([key, value]) => (
