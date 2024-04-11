@@ -9,9 +9,10 @@ services:
     ports:
       - 8000:8000
     environment:
-      - WEAVIATE_URL_VERBA=http://weaviate:8080
+      - WEAVIATE_URL_VERBA=http://127.0.0.1:8080
       - OPENAI_API_KEY=$OPENAI_API_KEY
-      ## IF YOU WANT AUTHENTICATION, UNCOMENT BELLOW 
+      # - WEAVIATE_URL_VERBA=http://weaviate:8080
+      ## IF YOU WANT AUTHENTICATION, UNCOMENT BELLOW
       ## AND ADD WEAVIATE SERVICE
       #- WEAVIATE_API_KEY_VERBA=adminkey
       #- COHERE_API_KEY=YOUR-COHERE-KEY
@@ -58,8 +59,9 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      BACKUP_FILESYSTEM_PATH: '/tmp/backups'
       # DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
-      ENABLE_MODULES: 'text2vec-openai, generative-openai, qna-openai, text2vec-cohere'
+      ENABLE_MODULES: 'text2vec-openai, generative-openai, qna-openai, text2vec-cohere, backup-filesystem'
       CLUSTER_HOSTNAME: 'node1'
       #######IF YOU WANT AUTHENTICATION UNCOMMENT BELOW########
       # AUTHENTICATION_APIKEY_ENABLED: 'true'
