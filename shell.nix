@@ -17,13 +17,7 @@
     lapack
     openssl
     sqlite
-    docker
-    docker-compose
-    docker-client
-    docker-ls
-    docker-sync
-    docker-slim
-    lazydocker
+    azure-cli
   ];
   multiPkgs = pkgs: with pkgs; [
     zlib
@@ -31,6 +25,7 @@
   runScript = "bash";
   profile = ''
     export FHS=1
+    export OPENAI_API_KEY=$VUS_OPENAI_API_KEY
     export MYPS1='\n\[\033[1;35m\](py311fhs)[\[\e]0;\u@\h: \w\a\]\u@\h:\w]\$\[\033[0m\] '
     export PS1=$MYPS1
   '';
