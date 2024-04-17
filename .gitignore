@@ -1,5 +1,6 @@
 .env
 .venv
+antenv
 **/out/*
 __pycache__
 .DS_Store
@@ -18,3 +19,4 @@ text-generation-inference
 test.py
 cache.txt
 .ruff_cache
+*.zip

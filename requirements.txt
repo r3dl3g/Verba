@@ -14,11 +14,11 @@ spacy==3.6.1
 tiktoken==0.5.1
 sentence-transformers
 transformers
-torch
 huggingface_hub
-asyncio
 accelerate
 cohere==4.33
 requests
 pypdf2
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==1.13.1+cpu
 pre-commit

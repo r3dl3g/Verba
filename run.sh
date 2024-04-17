@@ -6,4 +6,7 @@ export BACKUP_FILESYSTEM_PATH=/home/armin/temp/weaviate
 #export VERBA_PRODUCTION=True
 export VERBA_PRODUCTION=False
 export CONTENT_DELEMITER="-----\n"
+
+export CLUSTER_ADVERTISE_ADDR="127.0.0.1"
+
 verba start $*
